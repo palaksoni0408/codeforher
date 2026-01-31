@@ -2,26 +2,70 @@ import React, { useState } from 'react'
 import { useDemo } from '../context/DemoContext'
 import Button from '../components/Button'
 
-export default function Shaktih(){
+function formatAnswer(j) {
+  if (!j) return ''
+  if (j.error && j.message) return `Error: ${j.message}`
+  if (j.response) {
+    const c = j.response
+    if (typeof c === 'string') return c
+    const parts = []
+    if (c.summary) parts.push(c.summary)
+    if (c.keyPoints && c.keyPoints.length) parts.push('\nKey points:\n• ' + c.keyPoints.join('\n• '))
+    if (c.lawReference) parts.push('\nLaw: ' + c.lawReference)
+    return parts.join('\n\n') || JSON.stringify(c, null, 2)
+  }
+  if (j.message) return j.message + (j.fallback ? '\n\n' + j.fallback : '')
+  return JSON.stringify(j, null, 2)
+}
+
+export default function Shaktih() {
   const [answer, setAnswer] = useState(null)
   const [q, setQ] = useState('')
-  const { askLegalQuery } = useDemo()
+  const [loading, setLoading] = useState(false)
+  const { askLegalQuery, t } = useDemo()
 
-  async function ask(){
-    const j = await askLegalQuery(q)
-    setAnswer(JSON.stringify(j, null, 2))
+  async function ask() {
+    const trimmed = q.trim()
+    if (!trimmed) {
+      setAnswer(t('enterQuestion'))
+      return
+    }
+    setLoading(true)
+    setAnswer(null)
+    try {
+      const j = await askLegalQuery(trimmed)
+      setAnswer(formatAnswer(j))
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
-    <main>
-      <h2>Shaktih — Safety & Legal Awareness</h2>
+    <main className="shaktih-page">
+      <h2>{t('shaktih')}</h2>
       <section className="card" aria-labelledby="shaktih-ask">
-        <label id="shaktih-ask" style={{display:'block', marginBottom:8}}>Ask about your rights (educational only)</label>
-        <div style={{display:'flex', gap:8, alignItems:'center'}}>
-          <input aria-label="Legal question" placeholder="Ask: maternity leave rules" value={q} onChange={e=>setQ(e.target.value)} style={{flex:1}} />
-          <Button onClick={ask} aria-label="Ask legal question">Ask</Button>
+        <label id="shaktih-ask" style={{ display: 'block', marginBottom: 8 }}>
+          {t('askRightsLabel')}
+        </label>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+          <input
+            aria-label="Legal question"
+            placeholder={t('askPlaceholder')}
+            value={q}
+            onChange={e => setQ(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && ask()}
+            style={{ flex: 1 }}
+            disabled={loading}
+          />
+          <Button onClick={ask} aria-label={t('ask')} disabled={loading}>
+            {loading ? '…' : t('ask')}
+          </Button>
         </div>
-        <pre style={{marginTop:8, whiteSpace:'pre-wrap'}}>{answer}</pre>
+        {answer != null && (
+          <div className="shaktih-answer" style={{ marginTop: 12 }}>
+            <pre style={{ whiteSpace: 'pre-wrap', margin: 0 }}>{answer}</pre>
+          </div>
+        )}
       </section>
     </main>
   )

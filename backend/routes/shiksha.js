@@ -4,6 +4,7 @@ const controller = require('../controllers/shikshaController')
 
 router.post('/generate-path', controller.generatePath)
 router.post('/update-progress', controller.updateProgress)
+router.get('/courses', controller.listCourses)
 router.get('/course/:courseId', controller.getCourse)
 
 module.exports = router

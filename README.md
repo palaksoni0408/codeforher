@@ -1,63 +1,102 @@
 # ViyaStree: शक्तिः, शिक्षा, समृद्धिः
-Power, Education, Prosperity — an empowerment loop connecting Skills → Livelihood → Safety.
 
-This repo contains a minimal demo scaffold (backend + frontend) to showcase the ViyaStree empowerment loop and orchestration layer.
+**Power, Education, Prosperity** — Empowering women everywhere through a holistic loop of Shaktih, Shiksha, and Samruddhih.
 
-Quick start — Backend
+ViyaStree is a web app that connects skill development (Shiksha), livelihood opportunities (Samruddhih), and legal & safety awareness (Shaktih) with progress tracking, gamification, and a backend that stores user progress and recommendations.
 
-1. Open PowerShell and start the backend:
+**For hackathon submission:** Problem statement, system architecture, steps to execute, and a **file-by-file code explanation** (for presentation and evaluation) are in **[SUBMISSION_GUIDE.md](./SUBMISSION_GUIDE.md)**.
+
+---
+
+## Quick start — Backend
+
+1. Ensure MongoDB is running (local or set `MONGO_URI` in `.env`).
+2. From the project root:
 
 ```powershell
-cd "c:\Users\palak\OneDrive\Desktop\New folder (2)\codeforher\backend"
+cd codeforher/backend
 npm install
 copy .env.example .env
-npm run seed   # loads demo user and knowledge base
+node scripts/seed_database.js
 npm start
 ```
 
-The backend runs on http://localhost:5000 and exposes the demo API under `/api/v1`.
+The backend runs on **http://localhost:5000** and serves APIs under `/api/v1`.
 
-Quick start — Frontend (Vite + React)
+---
 
-1. In a new terminal, start the frontend dev server:
+## Quick start — Frontend
+
+1. In a new terminal:
 
 ```powershell
-cd "c:\Users\palak\OneDrive\Desktop\New folder (2)\codeforher\frontend"
+cd codeforher/frontend
 npm install
 npm run dev
 ```
 
-Open the Vite URL shown (typically http://localhost:5173). The frontend is pre-wired to call the backend endpoints (same origin or via proxy).
+2. Open the URL shown (e.g. **http://localhost:5173**).  
+3. Use **Sign Up** or **Log In** (any name/email for demo) to enter the app.
 
-What was added
+The frontend proxies `/api` to the backend when both are running.
 
-- Backend: Express server (`backend/index.js`), route stubs (`backend/routes/*`), controllers (`backend/controllers/*`), Mongoose models (`backend/models/*`), an `orchestrator.js` event-bus skeleton, and a seed script (`backend/scripts/seed_database.js`).
-- Data: `data/knowledge_base.json` contains sample legal-awareness snippets.
-- Frontend: Vite + React app in `frontend/` with four main pages (Dashboard, Shiksha, Samruddhih, Shaktih).
-- Demo state: `frontend/src/context/DemoContext.jsx` provides a demo user, in-app notifications, and helper actions (`completeCourse`, `saveOpportunity`, `askLegalQuery`).
-- Accessibility & UI: added accessible components (`frontend/src/components/Header.jsx`, `Button.jsx`, `Icon.jsx`), skip link, aria attributes, focus styles and semantic sections.
+---
 
-Demo flows
+## What’s in the app
 
-- Skill completion → `orchestrator.emitEvent('skill_completed', ...)` → opportunity matching (logged in orchestrator).
-- Save opportunity → `orchestrator.emitEvent('opportunity_saved', ...)` → safety recommendation if needed.
-- Legal query uses `knowledge_base` entries and returns educational snippets with a disclaimer.
+- **Landing** — ViyaStree branding, “Start Your Journey”, Log In / Sign Up.
+- **Auth** — Create Account (Full Name, Email, Password) and Log In; demo mode (no real auth).
+- **Dashboard** — Greeting, “Current Status: Active Learner”, metrics (Skills Learned, Jobs Applied, Rights Known, Safety Score with **progress bar**), “Your Empowerment Loop” cards (Shiksha, Samruddhih, Shaktih), and “Recommended for You” from the backend.
+- **Shiksha** (शिक्षा — Education) — **Learning streak** (Days Active, Top X% of Learners), **Featured courses** with **progress bars** (Not Started / X% Complete), Start Learning / Continue (persisted via API).
+- **Samruddhih** (समृद्धिः — Prosperity) — Search, **opportunity cards** with **match %** (skill fit), Apply Now (stored in backend), View My Applications.
+- **Shaktih** (शक्तिः — Power) — Ask legal questions; answers from the knowledge base (educational only).
 
-Notes
+**Gamification & progress**
 
-- The system is intentionally demo-focused: single demo user (`demo_user`) and lightweight, explainable logic. The legal snippets are educational only and not legal advice.
-- To change the demo user or add more content, edit `backend/scripts/seed_database.js` and `data/knowledge_base.json`.
+- Progress bars for course completion and Safety Score.
+- Learning streak (days active) and learner rank (Top X%).
+- Match percentage on each opportunity card.
+- Status badge and recommendations driven by backend data.
 
-Files of interest
+---
 
-- Backend: `backend/index.js`, `backend/orchestrator.js`, `backend/models/*`, `backend/controllers/*`, `backend/routes/*`, `backend/scripts/seed_database.js`
-- Frontend: `frontend/src/context/DemoContext.jsx`, `frontend/src/components/*`, `frontend/src/pages/*`, `frontend/src/App.jsx`
+## Backend overview
 
-Next steps
+- **Models:** User (profile, progress, `courseProgress`, `learningStreakDays`, `safetyScore`, `applications`), Course, Opportunity, Event, KnowledgeBase.
+- **APIs:**
+  - `GET /api/v1/orchestration/dashboard?userId=...` — metrics, recommendations, next steps.
+  - `GET /api/v1/shiksha/courses?userId=...` — courses with user `percentComplete`.
+  - `POST /api/v1/shiksha/update-progress` — update course progress and streak.
+  - `GET /api/v1/samruddhih/opportunities?userId=...` — opportunities with `matchPercent`.
+  - `POST /api/v1/samruddhih/apply` — record job application.
+- **Seed:** Demo user “Palak”, sample courses, opportunities, and knowledge base.
 
-- Run backend and frontend locally (commands above) and test the demo flows: complete a course (Shiksha), view matched opportunities (Samruddhih), save an opportunity and follow the safety suggestion (Shaktih).
+---
 
-Contact
+## Demo flows
 
-For questions or to extend the scaffold, open an issue or contact the project owner.
+- **Skill completion** → backend updates `courseProgress` and streak → orchestrator can trigger opportunity matching.
+- **Save / Apply opportunity** → stored in user → orchestrator can suggest safety lessons.
+- **Legal query** → keyword match against `knowledge_base` → educational snippet (not legal advice).
 
+---
+
+## Files of interest
+
+| Area        | Paths |
+|------------|--------|
+| Backend    | `backend/index.js`, `backend/orchestrator.js`, `backend/models/*`, `backend/controllers/*`, `backend/routes/*`, `backend/scripts/seed_database.js` |
+| Frontend   | `frontend/src/App.jsx`, `frontend/src/context/DemoContext.jsx`, `frontend/src/components/*`, `frontend/src/pages/*` |
+| Data       | `data/knowledge_base.json` |
+
+---
+
+## Notes
+
+- Demo mode uses a single user id (`demo_user`); sign up / log in set local state and use the same backend user for simplicity.
+- Legal content is for education only and is not legal advice.
+- To change demo data, edit `backend/scripts/seed_database.js` and `data/knowledge_base.json`.
+
+---
+
+For questions or to extend the project, open an issue or contact the project owner.
