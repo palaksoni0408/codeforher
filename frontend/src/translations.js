@@ -15,6 +15,77 @@ export const translations = {
     startJourney: 'Start Your Journey →',
     existingMember: 'Existing Member?',
 
+    // Quick Actions
+    quickActionsTitle: 'Quick Actions',
+    sosLabel: 'SOS Alert',
+    nearbyHelpLabel: 'Nearby Help',
+    askMentorLabel: 'Ask Mentor',
+    findJobsLabel: 'Find Jobs',
+
+    // Services Hub
+    servicesHubTitle: 'How VIYASTREE Supports You',
+    servicesHubSubtitle: 'Comprehensive tools for your empowerment journey',
+
+    serviceEduTitle: 'Education Support',
+    serviceEduDesc: 'Unlock your potential through learning',
+    serviceEduPoint1: 'Skill-based courses',
+    serviceEduPoint2: 'Scholarship alerts',
+    serviceEduPoint3: '1-on-1 Mentorship',
+    serviceEduPoint4: 'Resume building',
+
+    serviceSafeTitle: 'Safety & Legal',
+    serviceSafeDesc: 'Your security is nuestro top priority',
+    serviceSafePoint1: 'Legal rights awareness',
+    serviceSafePoint2: 'Instant SOS button',
+    serviceSafePoint3: '24/7 legal helpline',
+    serviceSafePoint4: 'Safe shelter locations',
+
+    serviceCareerTitle: 'Career & Jobs',
+    serviceCareerDesc: 'Build a sustainable livelihood',
+    serviceCareerPoint1: 'Job matching using AI',
+    serviceCareerPoint2: 'Interview preparation',
+    serviceCareerPoint3: 'Remote work options',
+    serviceCareerPoint4: 'Self-employment tools',
+
+    serviceHealthTitle: 'Health & Wellness',
+    serviceHealthDesc: 'Care for yourself effectively',
+    serviceHealthPoint1: 'Menstrual health tips',
+    serviceHealthPoint2: 'Mental health support',
+    serviceHealthPoint3: 'Nutrition guidance',
+    serviceHealthPoint4: 'Find nearby doctors',
+
+    serviceFinanceTitle: 'Financial Power',
+    serviceFinancePoint1: 'Govt. schemes alerts',
+    serviceFinancePoint2: 'Micro-loan access',
+    serviceFinancePoint3: 'Savings & budgeting',
+    serviceFinancePoint4: 'Digital banking help',
+
+    serviceCommTitle: 'Community Hub',
+    serviceCommPoint1: 'Supportive forums',
+    serviceCommPoint2: 'Success stories',
+    serviceCommPoint3: 'Safe peer networking',
+    serviceCommPoint4: 'Community voting',
+
+    // Carousel Slides
+    carouselSlide1Title: 'Microentrepreneur Support',
+    carouselSlide1Desc: 'Get low-interest loans and personalized mentorship to start your own small business at home.',
+    carouselSlide2Title: 'Mental Health Safe Space',
+    carouselSlide2Desc: 'Connect with expert counselors in a judgment-free, confidential environment for your well-being.',
+    carouselSlide3Title: 'Family & Childcare Support',
+    carouselSlide3Desc: 'Access community-run childcare cooperatives so you can focus on your work or studies with peace of mind.',
+    carouselSlide4Title: 'Menstrual Hygiene & Wellness',
+    carouselSlide4Desc: 'Receive monthly wellness kits and health education to manage your cycle with dignity and comfort.',
+
+    // Progress Section
+    profileProgressTitle: 'Your Empowerment Progress',
+    profileProgressTip: 'Complete your profile to unlock personalized job matches and course recommendations!',
+    profileProgressPercent: '{percent}% complete',
+
+    // Footer CTA
+    footerCtaTitle: 'Ready to Transform Your Life?',
+    footerCtaDesc: 'Join thousands of women who are finding their power, learning new skills, and achieving financial independence.',
+
+
     // Concept / About (easy to understand)
     whatIsViyastree: 'What is VIYASTREE?',
     conceptIntro: 'VIYASTREE helps you in three simple ways:',
@@ -95,6 +166,32 @@ export const translations = {
     // Language
     langEn: 'English',
     langHi: 'हिंदी',
+
+    // USP (Unique Selling Propositions)
+    uspHeading: 'Why Choose {feature}?',
+    uspViyastreeHeading: 'Why Choose VIYASTREE?',
+    uspViyastreePoint1: '🔄 Holistic Empowerment Loop — Shaktih, Shiksha, and Samruddhih work together to create lasting change',
+    uspViyastreePoint2: '🌐 Multilingual Support — Access everything in English or Hindi, breaking language barriers',
+    uspViyastreePoint3: '🎯 Personalized Journey — AI-driven recommendations tailored to your unique goals and skills',
+    uspViyastreePoint4: '🛡️ Safe & Trusted — Built with women\'s safety and privacy as top priorities',
+
+    uspShaktihHeading: 'Why Use Shaktih?',
+    uspShaktihPoint1: '⚖️ Know Your Rights — Get instant answers about maternity leave, equal pay, workplace harassment, and more',
+    uspShaktihPoint2: '📚 Educational Content — Learn about legal protections in simple, easy-to-understand language',
+    uspShaktihPoint3: '🚨 Safety First — Access emergency resources and digital safety tools when you need them',
+    uspShaktihPoint4: '💡 Always Available — 24/7 access to legal information and rights awareness',
+
+    uspShikshaHeading: 'Why Learn with Shiksha?',
+    uspShikshaPoint1: '🎓 AI-Powered Learning — Personalized course recommendations based on your goals and progress',
+    uspShikshaPoint2: '📈 Track Your Growth — Monitor your learning streak, completed skills, and rank among learners',
+    uspShikshaPoint3: '🆓 Free Quality Courses — Access professional courses in technology, finance, and essential skills',
+    uspShikshaPoint4: '⏱️ Learn at Your Pace — Flexible learning that fits your schedule and lifestyle',
+
+    uspSamruddhihHeading: 'Why Find Work with Samruddhih?',
+    uspSamruddhihPoint1: '🎯 Smart Matching — See exactly how well each opportunity matches your verified skills',
+    uspSamruddhihPoint2: '✅ Verified Opportunities — Connect with trusted employers committed to fair practices',
+    uspSamruddhihPoint3: '📊 Track Applications — Easily manage and monitor all your job applications in one place',
+    uspSamruddhihPoint4: '💼 Diverse Options — From remote work to local opportunities, find what fits your life',
   },
   hi: {
     // Landing
@@ -107,6 +204,77 @@ export const translations = {
     mission: 'शक्तिः, शिक्षा और समृद्धिः के ज़रिए आर्थिक आज़ादी तक पहुँच — एक सरल लूप।',
     startJourney: 'अपनी यात्रा शुरू करें →',
     existingMember: 'पहले से सदस्य हैं?',
+
+    // Quick Actions
+    quickActionsTitle: 'त्वरित कार्रवाई',
+    sosLabel: 'SOS अलर्ट',
+    nearbyHelpLabel: 'निकटतम सहायता',
+    askMentorLabel: 'मेंटर से पूछें',
+    findJobsLabel: 'नौकरी खोजें',
+
+    // Services Hub
+    servicesHubTitle: 'वियास्त्री आपकी कैसे मदद करता है',
+    servicesHubSubtitle: 'आपकी सशक्तिकरण यात्रा के लिए व्यापक उपकरण',
+
+    serviceEduTitle: 'शिक्षा सहायता',
+    serviceEduDesc: 'सीखने के माध्यम से अपनी क्षमता को अनलॉक करें',
+    serviceEduPoint1: 'कौशल आधारित पाठ्यक्रम',
+    serviceEduPoint2: 'छात्रवृत्ति अलर्ट',
+    serviceEduPoint3: '1-पर-1 परामर्श',
+    serviceEduPoint4: 'रिज्यूमे बनाना',
+
+    serviceSafeTitle: 'सुरक्षा और कानूनी',
+    serviceSafeDesc: 'आपकी सुरक्षा हमारी सर्वोच्च प्राथमिकता है',
+    serviceSafePoint1: 'कानूनी अधिकारों की जागरूकता',
+    serviceSafePoint2: 'त्वरित SOS बटन',
+    serviceSafePoint3: '24/7 कानूनी हेल्पलाइन',
+    serviceSafePoint4: 'सुरक्षित आश्रय स्थान',
+
+    serviceCareerTitle: 'करियर और नौकरियां',
+    serviceCareerDesc: 'एक स्थायी आजीविका बनाएं',
+    serviceCareerPoint1: 'AI आधारित जॉब मैचिंग',
+    serviceCareerPoint2: 'इंटरव्यू की तैयारी',
+    serviceCareerPoint3: 'रिमोट काम के विकल्प',
+    serviceCareerPoint4: 'स्वरोजगार उपकरण',
+
+    serviceHealthTitle: 'स्वास्थ्य और कल्याण',
+    serviceHealthDesc: 'प्रभावी ढंग से अपनी देखभाल करें',
+    serviceHealthPoint1: 'मासिक धर्म स्वास्थ्य युक्तियाँ',
+    serviceHealthPoint2: 'मानसिक स्वास्थ्य सहायता',
+    serviceHealthPoint3: 'पोषण मार्गदर्शन',
+    serviceHealthPoint4: 'निकटतम डॉक्टर खोजें',
+
+    serviceFinanceTitle: 'वित्तीय शक्ति',
+    serviceFinancePoint1: 'सरकारी योजना अलर्ट',
+    serviceFinancePoint2: 'माइक्रो-लोन तक पहुंच',
+    serviceFinancePoint3: 'बचत और बजट',
+    serviceFinancePoint4: 'डिजिटल बैंकिंग सहायता',
+
+    serviceCommTitle: 'सामुदायिक केंद्र',
+    serviceCommPoint1: 'सहायक मंच',
+    serviceCommPoint2: 'सफलता की कहानियां',
+    serviceCommPoint3: 'सुरक्षित नेटवर्किंग',
+    serviceCommPoint4: 'सामुदायिक मतदान',
+
+    // Carousel Slides
+    carouselSlide1Title: 'लघु उद्यमी सहायता',
+    carouselSlide1Desc: 'घर पर अपना छोटा व्यवसाय शुरू करने के लिए कम ब्याज वाले ऋण और व्यक्तिगत मार्गदर्शन प्राप्त करें।',
+    carouselSlide2Title: 'मानसिक स्वास्थ्य सुरक्षित स्थान',
+    carouselSlide2Desc: 'अपनी भलाई के लिए भेदभाव रहित, गोपनीय वातावरण में विशेषज्ञ परामर्शदाताओं से जुड़ें।',
+    carouselSlide3Title: 'परिवार और बाल देखभाल सहायता',
+    carouselSlide3Desc: 'सामुदायिक बाल देखभाल सहकारी समितियों तक पहुंच प्राप्त करें ताकि आप मन की शांति के साथ अपने काम या पढ़ाई पर ध्यान केंद्रित कर सकें।',
+    carouselSlide4Title: 'मासिक धर्म स्वच्छता और कल्याण',
+    carouselSlide4Desc: 'मर्यादा और आराम के साथ अपने चक्र को प्रबंधित करने के लिए मासिक कल्याण किट और स्वास्थ्य शिक्षा प्राप्त करें।',
+
+    // Progress Section
+    profileProgressTitle: 'आपकी सशक्तिकरण प्रगति',
+    profileProgressTip: 'व्यक्तिगत जॉब मैच और कोर्स अनुशंसाओं को अनलॉक करने के लिए अपनी प्रोफ़ाइल पूरी करें!',
+    profileProgressPercent: '{percent}% पूर्ण',
+
+    // Footer CTA
+    footerCtaTitle: 'क्या आप अपना जीवन बदलने के लिए तैयार हैं?',
+    footerCtaDesc: 'उन हजारों महिलाओं में शामिल हों जो अपनी शक्ति पा रही हैं, नए कौशल सीख रही हैं और आर्थिक स्वतंत्रता प्राप्त कर रही हैं।',
+
 
     // Concept / About
     whatIsViyastree: 'VIYASTREE क्या है?',
@@ -188,6 +356,32 @@ export const translations = {
     // Language
     langEn: 'English',
     langHi: 'हिंदी',
+
+    // USP (Unique Selling Propositions)
+    uspHeading: '{feature} क्यों चुनें?',
+    uspViyastreeHeading: 'VIYASTREE क्यों चुनें?',
+    uspViyastreePoint1: '🔄 समग्र सशक्तिकरण लूप — शक्तिः, शिक्षा और समृद्धिः मिलकर स्थायी बदलाव लाते हैं',
+    uspViyastreePoint2: '🌐 बहुभाषी समर्थन — अंग्रेज़ी या हिंदी में सब कुछ एक्सेस करें, भाषा की बाधाओं को तोड़ें',
+    uspViyastreePoint3: '🎯 व्यक्तिगत यात्रा — आपके अनूठे लक्ष्यों और कौशल के अनुरूप AI-संचालित सुझाव',
+    uspViyastreePoint4: '🛡️ सुरक्षित और विश्वसनीय — महिलाओं की सुरक्षा और गोपनीयता को सर्वोच्च प्राथमिकता',
+
+    uspShaktihHeading: 'शक्तिः का उपयोग क्यों करें?',
+    uspShaktihPoint1: '⚖️ अपने अधिकार जानें — मातृत्व अवकाश, समान वेतन, कार्यस्थल उत्पीड़न आदि के बारे में तुरंत जवाब पाएं',
+    uspShaktihPoint2: '📚 शैक्षिक सामग्री — सरल, समझने में आसान भाषा में कानूनी सुरक्षा के बारे में जानें',
+    uspShaktihPoint3: '🚨 सुरक्षा पहले — जब आपको ज़रूरत हो तब आपातकालीन संसाधन और डिजिटल सुरक्षा उपकरण',
+    uspShaktihPoint4: '💡 हमेशा उपलब्ध — कानूनी जानकारी और अधिकार जागरूकता तक 24/7 पहुंच',
+
+    uspShikshaHeading: 'शिक्षा से सीखना क्यों?',
+    uspShikshaPoint1: '🎓 AI-संचालित सीखना — आपके लक्ष्यों और प्रगति के आधार पर व्यक्तिगत कोर्स सुझाव',
+    uspShikshaPoint2: '📈 अपनी वृद्धि ट्रैक करें — अपनी सीखने की लगन, पूर्ण कौशल और शिक्षार्थियों में रैंक देखें',
+    uspShikshaPoint3: '🆓 मुफ़्त गुणवत्ता कोर्स — प्रौद्योगिकी, वित्त और आवश्यक कौशल में पेशेवर कोर्स',
+    uspShikshaPoint4: '⏱️ अपनी गति से सीखें — लचीला सीखना जो आपके शेड्यूल और जीवनशैली के अनुकूल हो',
+
+    uspSamruddhihHeading: 'समृद्धिः से काम क्यों खोजें?',
+    uspSamruddhihPoint1: '🎯 स्मार्ट मैचिंग — देखें कि प्रत्येक अवसर आपके सत्यापित कौशल से कितना मेल खाता है',
+    uspSamruddhihPoint2: '✅ सत्यापित अवसर — निष्पक्ष प्रथाओं के लिए प्रतिबद्ध विश्वसनीय नियोक्ताओं से जुड़ें',
+    uspSamruddhihPoint3: '📊 आवेदन ट्रैक करें — एक ही स्थान पर अपने सभी नौकरी आवेदनों को आसानी से प्रबंधित करें',
+    uspSamruddhihPoint4: '💼 विविध विकल्प — रिमोट काम से लेकर स्थानीय अवसरों तक, वह खोजें जो आपके जीवन में फिट बैठे',
   },
 }
 
@@ -197,14 +391,14 @@ export function getStoredLanguage() {
   try {
     const stored = localStorage.getItem(LANG_KEY)
     if (stored === 'hi' || stored === 'en') return stored
-  } catch (_) {}
+  } catch (_) { }
   return 'en'
 }
 
 export function setStoredLanguage(lang) {
   try {
     localStorage.setItem(LANG_KEY, lang)
-  } catch (_) {}
+  } catch (_) { }
 }
 
 /**

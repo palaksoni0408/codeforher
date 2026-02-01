@@ -1,12 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDemo } from '../context/DemoContext'
 import { GraduationCap, Briefcase, Scale, Shield, ChevronUp, ArrowRight } from '../components/Icon'
 import ProgressBar from '../components/ProgressBar'
+import USPSection from '../components/USPSection'
+import MotivationalQuote from '../components/MotivationalQuote'
+import { getDailyQuote, wasQuoteShownThisSession, markQuoteAsShown } from '../motivationalContent'
 
 export default function Dashboard() {
   const { user, dashboard, setDashboard, t } = useDemo()
   const userId = user?.userId || 'demo_user'
+
+  // Daily motivational quote (shown once per session)
+  const [dailyQuote, setDailyQuote] = useState(() => {
+    if (!wasQuoteShownThisSession('dashboard_daily')) {
+      return getDailyQuote()
+    }
+    return null
+  })
 
   useEffect(() => {
     fetch(`/api/v1/orchestration/dashboard?userId=${userId}`)
@@ -14,6 +25,11 @@ export default function Dashboard() {
       .then(setDashboard)
       .catch(() => setDashboard(null))
   }, [userId, setDashboard])
+
+  const handleQuoteDismiss = () => {
+    markQuoteAsShown('dashboard_daily')
+    setDailyQuote(null)
+  }
 
   const d = dashboard
   const name = user?.profile?.name || d?.profile?.name || 'User'
@@ -37,6 +53,30 @@ export default function Dashboard() {
           <p className="dashboard-tagline">{t('journeyContinues')}</p>
         </div>
         <span className="status-badge">{t('currentStatus')}</span>
+      </div>
+
+      {/* Profile Progress Indicator */}
+      <div className="profile-progress-preview" style={{ marginTop: 0, marginBottom: '24px' }}>
+        <div className="progress-header">
+          <h3 className="progress-title playfair">{t('profileProgressTitle')}</h3>
+          <span className="progress-percentage">60%</span>
+        </div>
+        <div className="progress-bar-large">
+          <div className="progress-fill-animated" style={{ width: '60%' }}></div>
+        </div>
+        <p className="progress-tip">✨ {t('profileProgressTip')}</p>
+      </div>
+
+      {/* Quick Actions (Dashboard Version) */}
+      <div className="quick-actions-bar" style={{ margin: '0 0 24px 0', justifyContent: 'flex-start' }}>
+        <button className="action-btn btn-sos" style={{ width: 'auto', padding: '12px 24px', flexDirection: 'row' }} onClick={() => alert('SOS Alert Triggered!')}>
+          <i>🚨</i>
+          <span className="action-label">{t('sosLabel')}</span>
+        </button>
+        <Link to="/shaktih" className="action-btn" style={{ width: 'auto', padding: '12px 24px', flexDirection: 'row' }}>
+          <i>📍</i>
+          <span className="action-label">{t('nearbyHelpLabel')}</span>
+        </Link>
       </div>
 
       <div className="metrics-grid">
@@ -65,6 +105,23 @@ export default function Dashboard() {
         </div>
       </div>
 
+      <MotivationalQuote
+        quote={dailyQuote}
+        variant="gradient"
+        onDismiss={handleQuoteDismiss}
+      />
+
+      <USPSection
+        heading={t('uspViyastreeHeading')}
+        points={[
+          t('uspViyastreePoint1'),
+          t('uspViyastreePoint2'),
+          t('uspViyastreePoint3'),
+          t('uspViyastreePoint4')
+        ]}
+        variant="gradient"
+      />
+
       <section className="empowerment-loop">
         <h2 className="section-title">
           <ChevronUp size={18} />
@@ -87,8 +144,8 @@ export default function Dashboard() {
         <ul className="recommended-list">
           {recommendations.length > 0
             ? recommendations.map((r, i) => (
-                <li key={i} className="recommended-item">{r.message}</li>
-              ))
+              <li key={i} className="recommended-item">{r.message}</li>
+            ))
             : <li className="recommended-item">{t('exploreShikshaRecommendation')}</li>
           }
         </ul>

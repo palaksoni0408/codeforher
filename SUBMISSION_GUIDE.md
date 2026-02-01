@@ -119,7 +119,7 @@ The app connects these three pillars in an **“Empowerment Loop”**: skills �
 
 ### Verifying execution
 
-- **Landing:** You see “VivaStree”, “Start Your Journey”, Log In / Sign Up.
+- **Landing:** You see “ViyaStree”, “Start Your Journey”, Log In / Sign Up.
 - **After login:** Dashboard shows metrics (Skills Learned, Jobs Applied, Rights Known, Safety Score), Empowerment Loop cards, and Recommended for You.
 - **Shiksha:** Shows learning streak, featured courses with progress bars; “Start Learning” / “Continue” update backend and refetch.
 - **Samruddhih:** Shows opportunity cards with match %; “Apply Now” stores application in backend.

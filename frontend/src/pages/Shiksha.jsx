@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useDemo } from '../context/DemoContext'
 import { BarChart } from '../components/Icon'
 import ProgressBar from '../components/ProgressBar'
+import USPSection from '../components/USPSection'
+import MotivationalQuote from '../components/MotivationalQuote'
+import { getShikshaQuote, wasQuoteShownThisSession, markQuoteAsShown } from '../motivationalContent'
 
 const API_BASE = '/api/v1/shiksha'
 
@@ -9,6 +12,7 @@ export default function Shiksha() {
   const { user, completeCourse, dashboard, t } = useDemo()
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
+  const [motivationalQuote, setMotivationalQuote] = useState(null)
   const userId = user?.userId || 'demo_user'
   const learningStreakDays = dashboard?.learningStreakDays ?? user?.progress?.learningStreakDays ?? 0
   const learnerRankPercent = dashboard?.learnerRankPercent ?? user?.progress?.learnerRankPercent
@@ -24,6 +28,19 @@ export default function Shiksha() {
     setLoading(true)
     fetchCourses().finally(() => setLoading(false))
   }, [userId])
+
+  // Update motivational quote when courses change
+  useEffect(() => {
+    if (courses.length > 0 && !wasQuoteShownThisSession('shiksha')) {
+      const quote = getShikshaQuote(courses)
+      setMotivationalQuote(quote)
+    }
+  }, [courses])
+
+  const handleQuoteDismiss = () => {
+    markQuoteAsShown('shiksha')
+    setMotivationalQuote(null)
+  }
 
   async function handleStartOrContinue(course) {
     const current = course.percentComplete ?? 0
@@ -52,6 +69,23 @@ export default function Shiksha() {
           <div className="streak-badge">{t('topLearners', { percent: learnerRankPercent })}</div>
         )}
       </div>
+
+      <MotivationalQuote
+        quote={motivationalQuote}
+        variant="blue"
+        onDismiss={handleQuoteDismiss}
+      />
+
+      <USPSection
+        heading={t('uspShikshaHeading')}
+        points={[
+          t('uspShikshaPoint1'),
+          t('uspShikshaPoint2'),
+          t('uspShikshaPoint3'),
+          t('uspShikshaPoint4')
+        ]}
+        variant="blue"
+      />
 
       <section className="featured-courses">
         <h2 className="section-title">{t('featuredCourses')}</h2>

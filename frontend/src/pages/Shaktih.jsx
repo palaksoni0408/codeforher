@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import { useDemo } from '../context/DemoContext'
 import Button from '../components/Button'
+import USPSection from '../components/USPSection'
+import MotivationalQuote from '../components/MotivationalQuote'
+import { motivationalQuotes, wasQuoteShownThisSession, markQuoteAsShown } from '../motivationalContent'
 
 function formatAnswer(j) {
   if (!j) return ''
@@ -22,7 +25,13 @@ export default function Shaktih() {
   const [answer, setAnswer] = useState(null)
   const [q, setQ] = useState('')
   const [loading, setLoading] = useState(false)
+  const [showQuote, setShowQuote] = useState(!wasQuoteShownThisSession('shaktih'))
   const { askLegalQuery, t } = useDemo()
+
+  const handleQuoteDismiss = () => {
+    markQuoteAsShown('shaktih')
+    setShowQuote(false)
+  }
 
   async function ask() {
     const trimmed = q.trim()
@@ -43,6 +52,24 @@ export default function Shaktih() {
   return (
     <main className="shaktih-page">
       <h2>{t('shaktih')}</h2>
+
+      <MotivationalQuote
+        quote={showQuote ? motivationalQuotes.shaktih.sectionIntro : null}
+        variant="purple"
+        onDismiss={handleQuoteDismiss}
+      />
+
+      <USPSection
+        heading={t('uspShaktihHeading')}
+        points={[
+          t('uspShaktihPoint1'),
+          t('uspShaktihPoint2'),
+          t('uspShaktihPoint3'),
+          t('uspShaktihPoint4')
+        ]}
+        variant="purple"
+      />
+
       <section className="card" aria-labelledby="shaktih-ask">
         <label id="shaktih-ask" style={{ display: 'block', marginBottom: 8 }}>
           {t('askRightsLabel')}
