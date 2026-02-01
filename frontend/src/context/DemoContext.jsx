@@ -15,7 +15,7 @@ export function DemoProvider({ children }) {
     try {
       const stored = localStorage.getItem(STORAGE_KEY)
       if (stored) return JSON.parse(stored)
-    } catch (_) {}
+    } catch (_) { }
     return null
   })
   const [notifications, setNotifications] = useState([])
@@ -40,7 +40,7 @@ export function DemoProvider({ children }) {
     if (!user) return
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(user))
-    } catch (_) {}
+    } catch (_) { }
   }, [user])
 
   // Dashboard is fetched by the Dashboard page when mounted
@@ -76,7 +76,7 @@ export function DemoProvider({ children }) {
     setDashboard(null)
     try {
       localStorage.removeItem(STORAGE_KEY)
-    } catch (_) {}
+    } catch (_) { }
   }
 
   async function completeCourse(courseId, quizScore = 85, percentComplete) {
@@ -157,15 +157,42 @@ export function DemoProvider({ children }) {
       try {
         j = await resp.json()
       } catch (_) {
-        return { error: 'network', message: 'Invalid response from server. Is the backend running on port 5000?' }
-      }
-      if (!resp.ok) {
-        return { error: j.error || 'server_error', message: j.message || 'Something went wrong. Please try again.' }
+        return { error: 'network', message: 'Invalid response from server.' }
       }
       return j
     } catch (e) {
-      console.error('askLegalQuery failed:', e)
-      return { error: 'network', message: 'Could not reach the server. Make sure the backend is running (npm start in backend folder).' }
+      return { error: 'network', message: 'Could not reach server.' }
+    }
+  }
+
+  async function sendSOS() {
+    try {
+      const resp = await fetch('/api/v1/shaktih/sos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId, location: 'Current GPS Coordinates' })
+      })
+      return await resp.json()
+    } catch (e) {
+      return { success: false, message: 'Failed to send SOS' }
+    }
+  }
+
+  async function getHelpCenters() {
+    try {
+      const resp = await fetch('/api/v1/shaktih/help-centers')
+      return await resp.json()
+    } catch (e) {
+      return { centers: [] }
+    }
+  }
+
+  async function getMentors() {
+    try {
+      const resp = await fetch('/api/v1/shiksha/mentors')
+      return await resp.json()
+    } catch (e) {
+      return { mentors: [] }
     }
   }
 
@@ -181,6 +208,9 @@ export function DemoProvider({ children }) {
     saveOpportunity,
     applyToOpportunity,
     askLegalQuery,
+    sendSOS,
+    getHelpCenters,
+    getMentors,
     notifications,
     pushNotification,
     language,

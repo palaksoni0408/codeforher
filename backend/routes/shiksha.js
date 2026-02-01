@@ -6,5 +6,6 @@ router.post('/generate-path', controller.generatePath)
 router.post('/update-progress', controller.updateProgress)
 router.get('/courses', controller.listCourses)
 router.get('/course/:courseId', controller.getCourse)
+router.get('/mentors', controller.listMentors)
 
 module.exports = router

@@ -18,6 +18,18 @@ exports.listOpportunities = async (req, res) => {
     const user = await User.findOne({ userId }).lean()
     const userSkills = user?.progress?.completed_skills || []
     const opportunities = await Opportunity.find({ isActive: true }).lean()
+
+    // Fallback for demo
+    if (opportunities.length === 0) {
+      const demoOpps = [
+        { title: "Home-based Tailoring", company: "ViyaStree Artisans", location: "Local / Home", salary: "₹8,000 - ₹12,000", type: "Flexible", requiredSkills: ["tailoring", "handicrafts"], matchPercent: 95 },
+        { title: "Digital Data Associate", company: "TechEmpower", location: "Remote / Online", salary: "₹15,000", type: "Part-time", requiredSkills: ["digital literacy", "typing"], matchPercent: 90 },
+        { title: "Anganwadi Support Worker", company: "State Welfare Dept", location: "Local Cluster", salary: "₹12,000", type: "Full-time", requiredSkills: ["communication", "local language"], matchPercent: 80 },
+        { title: "Small Business Vendor", company: "Self-Employed", location: "Market Hub", salary: "Earnings-based", type: "Self-Employment", requiredSkills: ["finance basics", "sales"], matchPercent: 70 }
+      ]
+      return res.json({ opportunities: demoOpps, totalMatches: 3 })
+    }
+
     const matches = opportunities.map(opp => ({
       ...opp,
       matchPercent: computeMatchPercent(userSkills, opp.requiredSkills || [])

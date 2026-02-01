@@ -2,15 +2,18 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Bell, User } from './Icon'
 
-export default function Header(){
+export default function Header() {
   const loc = useLocation()
 
   return (
     <header className="topbar" role="banner">
       <a className="skip-link" href="#main">Skip to content</a>
-      <div className="brand">
-        <h1>ViyaStree</h1>
-        <small className="tag">शक्तिः • शिक्षा • समृद्धिः</small>
+      <div className="brand" style={{ display: 'flex', alignItems: 'center' }}>
+        <img src="/logo.png" alt="" style={{ height: '32px', marginRight: '10px' }} />
+        <div>
+          <h1 style={{ margin: 0 }}>ViyaStree</h1>
+          <small className="tag">शक्तिः • शिक्षा • समृद्धिः</small>
+        </div>
       </div>
 
       <nav role="navigation" aria-label="Main navigation">

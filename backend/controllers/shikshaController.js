@@ -1,5 +1,6 @@
 const Course = require('../models/Course')
 const User = require('../models/User')
+const Mentor = require('../models/Mentor')
 const Orchestrator = require('../orchestrator')
 const orchestrator = new Orchestrator()
 
@@ -75,3 +76,23 @@ exports.listCourses = async (req, res) => {
   }))
   res.json({ courses: list })
 }
+
+exports.listMentors = async (req, res) => {
+  try {
+    const mentors = await Mentor.find({}).lean()
+    if (mentors.length === 0) {
+      return res.json({
+        mentors: [
+          { name: "Dr. Anjali Verma", expertise: ["👩‍⚕️ Certified Counselor", "Mental Health"], bio: "Expert in emotional support and stress management.", availability: "Mon-Wed, 4pm-6pm" },
+          { name: "Suman Rao", expertise: ["👩‍💼 Career Mentor", "Small Business"], bio: "Helped 500+ women start micro-businesses in rural areas.", availability: "Tue-Fri, 10am-12pm" },
+          { name: "Prof. Savita Devi", expertise: ["👩‍🏫 Govt School Educator", "Education"], bio: "30+ years of teaching experience in primary and secondary education.", availability: "Weekends, 11am-1pm" },
+          { name: "Meera Nair", expertise: ["🤝 Women Support Volunteer", "Legal Info"], bio: "Passionate about providing safety and legal awareness information.", availability: "24/7 (Emergency Help)" }
+        ]
+      })
+    }
+    return res.json({ mentors })
+  } catch (err) {
+    return res.status(500).json({ error: 'failed to load mentors' })
+  }
+}
+
